@@ -90,31 +90,10 @@ add_routes(
 )
 
 
-@app.get("/")
-async def root():
-    return {
-        "message": "NER API is running",
-        "endpoints": {
-            "ner": "/ner/invoke (POST)",
-            "docs": "/docs",
-            "playground": "/ner/playground"
-        }
-    }
-
-
-@app.get("/health")
-async def health():
-    return {"status": "healthy"}
-
-
 if __name__ == "__main__":
     print("Starting NER API server...")
     print("API Documentation: http://localhost:8000/docs")
     print("Playground: http://localhost:8000/ner/playground")
-    print("\nExample request:")
-    print('curl -X POST "http://localhost:8000/ner/invoke" \\')
-    print('  -H "Content-Type: application/json" \\')
-    print('  -d \'{"input": "John Doe, the CEO of Acme Inc., plans to visit our London office next Tuesday."}\'')
     print("\n")
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
